@@ -1,0 +1,47 @@
+<header class="navbar navbar-fixed-top navbar-inverse ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <h1>
+          <%= link_to(t('SettleUp'), root_path, class: 'title-link') %>
+        </h1>
+      </div>
+      <% unless user_signed_in? %>
+        <div class="col-md-7"></div>
+        <div class="col-md-2 login-link">
+          <p><%= link_to 'Sign up as User', new_user_registration_path %></p>
+          <p><%= link_to 'Sign in as User', new_user_session_path %></p>
+        </div>
+      <% else %>
+        <div class="col-md-7">
+          <ul class="nav nav-tabs">
+            <li>
+              <%= link_to 'Home', root_path %>
+            </li>
+            <li>
+              <%= link_to 'Teams', teams_path%>
+            </li>
+            <li>
+              <%= link_to 'Your Expenses', expenses_path %>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 info-wrap">
+          <div class="logout-nav">
+            <div class="profile-info">
+              <%= 'User' %>
+            </div>
+          </div>
+          <ul class="logout-wrap">
+            <li>
+              <%= link_to(t(:change_password), edit_user_registration_path) %>
+            </li>
+            <li>
+              <%= link_to(t('logout'), main_app.destroy_user_session_path, method: :get) %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,40 @@
+<div class="jumbotron">
+  <div class="custom-page-header">
+  <div class="container">
+    <h1> Team Users
+    </h1>
+  </div>
+</div>
+<section class="course-listing">
+  <div class="container">
+    <div class="middle-heading clearfix">
+      <%= link_to 'Add Team member', edit_team_path(@team), {class: 'pull-right btn btn-primary'} %>
+    </div>
+    <span></span>
+    <div class="result">
+      <table class="table table-striped table-bordered table-condensed table-hover">
+        <thead>
+          <tr>
+            <th> Index </th>
+            <th> User name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @team_users.each_with_index do |user, index| %>
+            <tr>
+              <td>
+                <%= index + 1 %>
+              </td>
+              <td>
+                <%= user.email %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</div>
+

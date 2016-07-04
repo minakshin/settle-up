@@ -1,0 +1,36 @@
+<div class="jumbotron">
+  <div class="container text-middle page-header">
+    <h1>Your Expenses</h1>
+    <p>Add your expense, please select total amount, reason and your team to add new expense</p>
+  </div>
+  <div class = "container">
+    <div class="middle-heading clearfix">
+      <%= link_to 'Add New Expense', new_expense_path, {class: 'pull-right btn btn-primary'} %>
+    </div>
+    <% if @expenses.present? %>
+      <table class=" table table-striped" data-sort-name="name" data-sort-order="desc">
+        <thead>
+          <tr>
+            <th data-field="index" >Sr. No</th>
+            <th data-field="total_xpense" >Total Expense</th>
+            <th data-field="reason" >Reason</th>
+            <th data-field="action" >Show Details</th>
+          </tr>
+        </thead>
+
+         <tbody>
+           <% @expenses.each_with_index do |expense, index| %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= expense.amount %></td>
+              <td><%= expense.reason %></td>
+              <td><%= link_to 'Show Team', expense_path(expense) %> </td>
+            </tr>
+          <% end %>
+         </tbody>
+        </table>
+      <% else %>
+        <p> No expenses has been added, you can simply add your expense <p>
+      <% end %>
+    </div>
+</div>

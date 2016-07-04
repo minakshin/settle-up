@@ -1,0 +1,33 @@
+<%= form_for(@team) do |f| %>
+  <div class="field form-horizontal clearfix">
+    <div class="form-group">
+      <% if @team.errors.any? %>
+          <div class="error error_flash" id="error_explanation">
+            <ul>
+              <% @team.errors.full_messages.each do |message| %>
+                <li>
+                  <%= message %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.label('', 'Create Team', class: 'mandatory col-sm-2 control-label') %>
+      <div class="col-sm-8">
+        <%= f.text_field :name, placeholder: 'Please enter team name', maxlength: '55', class: 'form-control', data: {message: 'Erro'} %>
+        <div class="form-group">
+          <%= f.label('', 'Users', class: 'mandatory col-md-2 control-label') %>
+          <div class="col-md-8">
+            <%= select_tag('team[user_ids][]', options_for_select(User.all.collect {|course| [course.email, course.id]}, @team.users.collect { |certificate_course| certificate_course.id}), {multiple: true, id: 'user-select'}) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-8 col-sm-offset-2">
+        <%= f.submit 'Create New Team', class: 'btn btn-primary' %>
+        <%= link_to 'Cancel', teams_path %>
+      </div>
+    </div>
+  </div>
+<% end %>

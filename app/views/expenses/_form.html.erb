@@ -1,0 +1,40 @@
+<%= form_for(@expense) do |f| %>
+  <div class="field form-horizontal clearfix">
+    <div class="form-group">
+      <% if @expense.errors.any? %>
+          <div class="error error_flash" id="error_explanation">
+            <ul>
+              <% @expense.errors.full_messages.each do |message| %>
+                <li>
+                  <%= message %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label('', 'Reason', class: 'mandatory col-sm-2 control-label') %>
+        <div class="col-md-8">
+          <%= f.text_field :reason, placeholder: 'Reason', maxlength: '55', class: 'form-control', data: {message: 'Erro'} %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label('', 'Expense', class: 'mandatory col-sm-2 control-label') %>
+        <div class="col-md-8">
+          <%= f.text_field :amount, placeholder: 'Please enter amount paid', maxlength: '55', class: 'form-control', data: {message: 'Erro'} %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label('', 'Team', class: 'mandatory col-sm-2 control-label') %>
+        <div class="col-md-8">
+          <%= f.collection_select(:team_id, @teams, :id, :name, {include_blank: 'Please Select your team'}, class: 'form-control required ') %>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-8 col-sm-offset-2">
+          <%= f.submit 'Create New Team', class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', teams_path %>
+        </div>
+      </div>
+  </div>
+<% end %>

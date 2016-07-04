@@ -1,0 +1,45 @@
+<div class="jumbotron">
+  <div class="custom-page-header">
+  <div class="container">
+    <h3> Expense Details</h3>
+  </div>
+</div>
+<section class="course-listing">
+  <div class="container">
+    <div class="nav-collapse">
+         <p> Reason of Expense <b><%= @expense.reason %></b></p>
+          <p>Amount spent by you  <b><%= @expense.amount %></b></p>
+          <p>Your Team Details are  <b><%= link_to "Team", team_path(@team) %></b>></p>
+          <p>Partners of Your team</p>
+      </div>
+    <div class="result">
+      <table class="table table-striped table-bordered table-condensed table-hover">
+        <thead>
+          <tr>
+            <th> Index </th>
+            <th> User email</th>
+            <th> Amount spent </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @team.users.each_with_index do |user, index| %>
+            <tr>
+              <td>
+                <%= index + 1 %>
+              </td>
+              <td>
+                <%= user.email %>
+              </td>
+              <td>
+                <%= user.expense(@team) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</div>
+

@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <div class="container text-middle page-header">
+    <h1>Your Groups</h1>
+    <p>Here is the list of group belongs to you, find your expenses,
+      ea  sliy calculated</p>
+  </div>
+  <div class = "container">
+    <div class="middle-heading clearfix">
+      <%= link_to 'Create new Team', new_team_path, {class: 'pull-right btn btn-primary'} %>
+    </div>
+    <table class=" table table-striped" data-sort-name="name" data-sort-order="desc">
+      <thead>
+        <tr>
+          <th data-field="id" data-sortable="true">Team ID</th>
+          <th data-field="name" data-sortable="true">Name</th>
+          <th data-field="action" data-sortable="false">Show</th>
+        </tr>
+      </thead>
+
+       <tbody>
+         <% @teams.each do |team| %>
+          <tr>
+            <td><%= team.id %></td>
+            <td><%= team.name %></td>
+            <td><%= link_to 'Show Team', team_path(team) %> </td>
+          </tr>
+        <% end %>
+       </tbody>
+      </table>
+    </div>
+</div>

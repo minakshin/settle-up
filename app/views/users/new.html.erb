@@ -1,0 +1,47 @@
+<div class="custom-page-header">
+  <div class="container">
+    <h1>
+      <%= localize('list_categories')    %>
+    </h1>
+  </div>
+</div>
+<section class="course-listing">
+  <div class="container">
+    <div class="middle-heading clearfix">
+      <%= link_to localize('add'), new_category_path, {class: 'pull-right btn btn-primary'} %>
+    </div>
+    <span></span>
+    <div class="result">
+      <table class="table table-striped table-bordered table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>
+              <%= localize('sr_no') %>
+            </th>
+            <th>
+              <%= localize('form.name')   %>
+            </th>
+            <th>
+              <%= localize('action')   %>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each_with_index do |category, index| %>
+            <tr>
+              <td>
+                <%= index + 1 %>
+              </td>
+              <td>
+                <%= category.name %>
+              </td>
+              <td>
+                <%= link_to localize('edit'), edit_category_path(category) %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
